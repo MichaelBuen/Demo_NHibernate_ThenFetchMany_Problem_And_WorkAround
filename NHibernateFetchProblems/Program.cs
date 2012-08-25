@@ -16,14 +16,14 @@ namespace NHibernateFetchProblems
         static void Main(string[] args)
         {
 
-            //TestEF();
+            TestEF();
 
-            //TestNhProb();
+            // TestNhProb();
                                     
             // TestNhOk();
 
 
-            TestNhProb2();
+            // TestNhProb2();
 
             
             Console.ReadKey();

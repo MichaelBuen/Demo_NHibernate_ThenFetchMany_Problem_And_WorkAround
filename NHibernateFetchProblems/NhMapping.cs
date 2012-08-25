@@ -7,11 +7,11 @@ using NHibernate;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Automapping;
-using FluentNHibernate.Conventions.Helpers;
 
-using NHibernateFetchProblems.Models;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
+
+using NHibernateFetchProblems.Models;
 
 namespace NHibernateFetchProblems.DbMapping
 {
@@ -32,18 +32,9 @@ namespace NHibernateFetchProblems.DbMapping
                 m.AutoMappings
                   .Add(AutoMap.AssemblyOf<Person>(cfg)
                   .Conventions.Add<ReferenceConvention>()
-                  // .Conventions.Add(typeof(ReferenceConvention))
-                  // .Conventions.Add(ForeignKey.EndsWith("Id"))
-                  //.Override<Question>(x => 
-                  //    {
-                  //        x.References(y => y.AskedBy).Column("AskedBy_PersonId");
-                  //        x.References(y => y.QuestionModifiedBy).Column("QuestionModifiedBy_PersonId");
-                  //    })
-
                   .Override<Question>(x => x.HasMany(y => y.QuestionComments).KeyColumn("Question_QuestionId").Cascade.AllDeleteOrphan().Inverse())
                   .Override<Question>(x => x.HasMany(y => y.Answers).KeyColumn("Question_QuestionId").Cascade.AllDeleteOrphan().Inverse())
                   .Override<Answer>(x => x.HasMany(y => y.AnswerComments).KeyColumn("Answer_AnswerId").Cascade.AllDeleteOrphan().Inverse())
-
                   )
                 )
               .BuildSessionFactory();
