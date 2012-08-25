@@ -20,10 +20,10 @@ namespace NHibernateFetchProblems
 
             //TestNhProb();
                                     
-            TestNhOk();
+            // TestNhOk();
 
-            
-            
+
+            TestNhProb2();
 
             
             Console.ReadKey();
@@ -43,7 +43,8 @@ namespace NHibernateFetchProblems
                     .Include("Answers")
                         .Include("Answers.AnswerComments")
 
-                    .Where(x => x.QuestionId == 1).Single();
+                    .Where(x => x.QuestionId == 1)
+                    .Single();
 
                 Console.WriteLine("{0}", q.QuestionText);
 
@@ -152,6 +153,41 @@ namespace NHibernateFetchProblems
                 
 
                 var q = q1.ToFuture().Single();
+
+                Console.WriteLine("{0}", q.QuestionText);
+
+                Console.ReadKey();
+                Console.WriteLine("{0}", q.AskedBy.PersonId);
+                Console.ReadKey();
+                Console.WriteLine("{0}", q.AskedBy.PersonName);
+                Console.ReadKey();
+                Console.WriteLine("Question Comments Count should be 2: {0}", q.QuestionComments.Count());
+                Console.ReadKey();
+                Console.WriteLine("Answers Count should be 3: {0}", q.Answers.Count());
+                Console.ReadKey();
+                Console.WriteLine("Answer #1 Comments Count should be 5: {0}", q.Answers[0].AnswerComments.Count());
+                Console.ReadKey();
+                Console.WriteLine("Answer #2 Comments Count should be 4: {0}", q.Answers[1].AnswerComments.Count());
+
+            }
+        }
+
+
+        private static void TestNhProb2()
+        {
+            using (var sess = NhMapping.GetSessionFactory().OpenSession())
+            {
+
+                var q1 = sess.Query<Question>()
+                    .Fetch(x => x.AskedBy)
+                    .Fetch(x => x.QuestionModifiedBy)
+                    .FetchMany(x => x.Answers)
+                        .ThenFetchMany(x => x.AnswerComments) // Doesn't work as advertised. This causes duplicate/cartesianed rows
+                    .FetchMany(x => x.QuestionComments)
+                    .Where(x => x.QuestionId == 1);
+
+
+                var q = q1.Single();
 
                 Console.WriteLine("{0}", q.QuestionText);
 
