@@ -71,7 +71,7 @@ namespace NHibernateFetchProblems
 
 
 
-        private static void TestNhOk()
+        static void TestNhOk()
         {
             using (var sess = NhMapping.GetSessionFactory().OpenSession())
             {
@@ -129,7 +129,7 @@ namespace NHibernateFetchProblems
       
 
 
-        private static void TestNhProb()
+        static void TestNhProb()
         {
             using (var sess = NhMapping.GetSessionFactory().OpenSession())
             {
@@ -173,7 +173,7 @@ namespace NHibernateFetchProblems
         }
 
 
-        private static void TestNhProb2()
+        static void TestNhProb2()
         {
             using (var sess = NhMapping.GetSessionFactory().OpenSession())
             {
