@@ -1,0 +1,14 @@
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\NHibernateFetchProblems.exe
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\NHibernateFetchProblems.pdb
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\FluentNHibernate.dll
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\Iesi.Collections.dll
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\NHibernate.dll
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\FluentNHibernate.xml
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\Iesi.Collections.xml
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\NHibernate.xml
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\obj\x86\Debug\NHibernateFetchProblems.exe
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\obj\x86\Debug\NHibernateFetchProblems.pdb
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\NHibernateFetchProblems.exe.config
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\EntityFramework.dll
+C:\Users\Michael\_CODE\_Tests\NHibernateFetchProblems\NHibernateFetchProblems\bin\Debug\EntityFramework.xml

@@ -1,0 +1,122 @@
+﻿use NhFetch;
+drop table AnswerComment;
+drop table Answer;
+drop table QuestionComment;
+drop table Question;
+drop table Person;
+
+create table Person
+(
+PersonId int identity(1,1) primary key,
+PersonName nvarchar(100) not null
+);
+
+create table Question
+(
+QuestionId int identity(1,1) primary key,
+QuestionText nvarchar(100) not null,
+AskedBy_PersonId int not null references Person(PersonId),
+QuestionModifiedBy_PersonId int null references Person(PersonId)
+);
+
+create table QuestionComment
+(
+Question_QuestionId int not null references Question(QuestionId),
+QuestionCommentId int identity(1,1) primary key,
+QuestionCommentText nvarchar(100) not null,
+QuestionCommentBy_PersonId int not null references Person(PersonId)
+);
+
+create table Answer
+(
+Question_QuestionId int not null references Question(QuestionId),
+AnswerId int identity(1,1) primary key,
+AnswerText nvarchar(100) not null,
+AnsweredBy_PersonId int not null references Person(PersonId),
+AnswerModifiedBy_PersonId int null references Person(PersonId)
+);
+
+create table AnswerComment
+(
+Answer_AnswerId int not null references Answer(AnswerId),
+AnswerCommentId int identity(1,1) primary key,
+AnswerCommentText nvarchar(100) not null,
+AnswerCommentBy_PersonId int not null references Person(PersonId)
+);
+
+
+insert into Person(PersonName) values('John');
+declare @john int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('Paul');
+declare @paul int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('George');
+declare @george int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('Ringo');
+declare @ringo int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('Brian');
+declare @brian int = SCOPE_IDENTITY();
+
+
+
+insert into Person(PersonName) values('Ely');
+declare @ely int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('Raymund');
+declare @raymund int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('Buddy');
+declare @buddy int = SCOPE_IDENTITY();
+
+insert into Person(PersonName) values('Marcus');
+declare @marcus int = SCOPE_IDENTITY();
+
+
+
+
+insert into Question(QuestionText,AskedBy_PersonId) values('What''s the answer to life and everything?',@john);
+declare @question1 int = SCOPE_IDENTITY();
+
+insert into QuestionComment(Question_QuestionId,QuestionCommentText,QuestionCommentBy_PersonId) values(@question1,'what is that?',@paul);
+insert into QuestionComment(Question_QuestionId,QuestionCommentText,QuestionCommentBy_PersonId) values(@question1,'nice question',@george);
+
+insert into Answer(Question_QuestionId,AnswerText,AnsweredBy_PersonId) values(@question1,'42',@ringo);
+declare @answer1q1 int = SCOPE_IDENTITY();
+insert into Answer(Question_QuestionId,AnswerText,AnsweredBy_PersonId) values(@question1,'9',@brian);
+declare @answer2q1 int = SCOPE_IDENTITY();
+insert into Answer(Question_QuestionId,AnswerText,AnsweredBy_PersonId) values(@question1,'76',@brian);
+declare @answer3q1 int = SCOPE_IDENTITY();
+
+
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer1q1, 'I think so', @ely);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer1q1, 'I''m sure', @raymund);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer1q1, 'But not quite', @raymund);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer1q1, '42 = 7 * 6. Answer to life is 76!', @buddy);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer1q1, '@buddy makes sense! you have same thoughts as @brian', @marcus);
+
+
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer2q1, 'Really 9?', @ely);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer2q1, 'Maybe 10?', @raymund);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer2q1, 'Maybe 12?', @buddy);
+insert into AnswerComment(Answer_AnswerId,AnswerCommentText,AnswerCommentBy_PersonId) values(@answer2q1, 'Make it baker''s dozen, make it 13', @buddy);
+
+
+insert into Question(QuestionText,AskedBy_PersonId) values('Is the sky blue?',@john);
+declare @question2 int = SCOPE_IDENTITY();
+
+insert into QuestionComment(Question_QuestionId,QuestionCommentText,QuestionCommentBy_PersonId) values(@question2,'maybe white',@paul);
+
+
+insert into Answer(Question_QuestionId,AnswerText,AnsweredBy_PersonId) values(@question2,'green',@ringo);
+declare @answer1q2 int = SCOPE_IDENTITY();
+
+
+
+
+select * from Question;
+select * from QuestionComment;
+select * from Answer;
+select * from AnswerComment;
